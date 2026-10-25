@@ -13,7 +13,9 @@ public class JSONUtil {
 
     static {
         mapper.registerModule(new JavaTimeModule());
-        mapper.enableDefaultTyping();
+        // Global default typing is intentionally NOT enabled: it lets type ids embedded in
+        // the JSON choose which class Jackson instantiates (polymorphic deserialization
+        // gadget attacks). Callers pass the concrete target class to fromJSON instead.
     }
 
 
